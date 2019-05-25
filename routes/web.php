@@ -105,7 +105,7 @@ Route::get('/outSearch/{type}', function($type){
 	if ($type == 2){
 		// получаем всех рабочих с суммой их часов за указаный период
 		$source = DB::select(" 
-			SELECT worker.id, worker.name, worker.surname, sum((worker.payment) * (orders.hourWork)) as PAY 
+			SELECT worker.id, worker.name, worker.surname, sum((worker.payment) * (orders.hourwork)) as PAY 
 			FROM worker INNER JOIN orders on worker.id = orders.workerid
 			WHERE orders.end > ? and orders.end < ?
 			GROUP BY worker.id;", [$_GET['begin'], $_GET['end']]);
